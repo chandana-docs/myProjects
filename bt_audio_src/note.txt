@@ -1,0 +1,2 @@
+ffmpeg -i test.mp3 -f s16le -acodec pcm_s16le -ar 44100 -ac 1 test_mono.pcm
+
