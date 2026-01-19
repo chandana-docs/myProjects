@@ -112,4 +112,5 @@ sudo reboot
 
 ### References
 * [https://hackaday.io/project/203272/instructions](https://hackaday.io/project/203272/instructions)
+* [https://mail.gnu.org/archive/html/grub-devel/2024-06/msg00164.html](https://mail.gnu.org/archive/html/grub-devel/2024-06/msg00164.html)
 
