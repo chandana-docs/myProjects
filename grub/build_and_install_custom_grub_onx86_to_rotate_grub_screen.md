@@ -65,6 +65,7 @@ sudo make install
 
 ### 5. Reinstall GRUB to the EFI Boot Sector
 This command installs the new GRUB system files to your EFI partition (`/boot/efi`). 
+
 **Ensure you specify the correct mount point for your EFI partition if it differs.**
 ```bash
 sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
@@ -83,10 +84,11 @@ Add the following line to the file, choosing your desired rotation angle:
 GRUB_FB_ROTATION=90
 ```
 **Available Options:**
-* `0`: Normal (Default)
-* `90`: Rotate 90 degrees (90 degrees counter-clockwise)
-* `180`: Rotate 180 degrees (upside down)
-* `270`: Rotate 270 degrees clockwise (clockwise)
+* `0`: Normal (`Default`)
+* `90`: Rotate 90 degrees (`left`)
+* `180`: Rotate 180 degrees (`right`)
+* `270`: Rotate 270 degrees clockwise (`inverted`)
+
 Save the file and exit the editor.
 
 ### 7. Update the GRUB Configuration File
