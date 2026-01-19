@@ -110,4 +110,6 @@ Reboot your system to test the new screen orientation in the GRUB boot menu.
 sudo reboot
 ```
 
+### References
+* [https://hackaday.io/project/203272/instructions](https://hackaday.io/project/203272/instructions)
 
