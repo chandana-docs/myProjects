@@ -1,4 +1,6 @@
-# Create Rpi RFS tarball
+## Create and boot into custom RFS tarball
+
+## Create Rpi RFS tarball
 
 Download the official image (Raspberry Pi OS Lite, Ubuntu Server, etc.) and loop back mount to the RFS inside tar.
 
@@ -36,3 +38,32 @@ Download the official image (Raspberry Pi OS Lite, Ubuntu Server, etc.) and loop
     cd ~/
     sudo umount /mnt/rpi-rootfs
     ```
+
+## Boot into RFS
+1. Shrink the Existing Partition & Create a New One.
+2. Extract the RFS Tarball
+    ```bash
+    sudo mount /dev/sdc3 /mnt/
+    cd /mnt
+    sudo tar xf rpi5-rootfs.tar.gz
+    ```
+    > Note: Replace `/dev/sdc3` with the correct partition which is created in the previous step.
+
+3. Update `/etc/fstab` inside the New RFS
+    - Update the `PARTUUID=` of the partitions.
+
+4. Switch the Boot Target
+    ```bash
+    sudo mkdir -p /media/bootfs
+    sudo mount /dev/sdc1 /media/bootfs
+    cd /media/bootfs
+    sudo nano cmdline.txt
+    ```
+    > Note: Replace `/dev/sdc1` with the correct boot partition.
+
+5. Look for the `root=` parameter. It will likely say `root=PARTUUID=...` or `root=/dev/mmcblk0p2`.       
+6. Change it to point to your new partition:
+    - `root=/dev/mmcblk0p3` or correct `PARTUUID`
+  
+7. Save and exit. 
+8. Reboot the Rpi.
