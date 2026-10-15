@@ -1,0 +1,38 @@
+# Create Rpi RFS tarball
+
+Download the official image (Raspberry Pi OS Lite, Ubuntu Server, etc.) and loop back mount to the RFS inside tar.
+
+1. [Raspberry Pi OS official website](https://www.raspberrypi.com/software/operating-systems/) From the latest from 64-bit Lite Image (.img.xz) downloading **Raspberry Pi OS Lite** in this example. This will download `2026-10-06-raspios-trixie-arm64-lite.img` file.
+
+2. Unpack it.
+    ```bash
+    unxz 2026-10-06-raspios-trixie-arm64-lite.img.xz
+    ```
+
+3. Check the partition structure of the image.
+    ```bash
+    sudo fdisk -l 2026-10-06-raspios-trixie-arm64-lite.img
+    ```
+
+4. Get the offset of the root partition (second partition).
+    ```bash
+    partx -g 2026-10-06-raspios-trixie-arm64-lite.img | awk 'NR==2 {print $2 * 512}'
+    ```
+
+    This will print the number similar to `545259520`. Copy this.
+
+5. Mount the partition.
+    ```bash
+    sudo mkdir /mnt/rpi-rootfs
+    sudo mount -o loop,offset=545259520 2026-10-06-raspios-trixie-arm64-lite.img /mnt/rpi-rootfs
+    ```
+
+    > Note: Replace `545259520` with correct number resulted from the previous step.
+
+6. Create an archive (tarball) and unmount the mounted partition(sector).
+    ```bash
+    cd /mnt/rpi-rootfs
+    sudo tar -cpzf ~/rpi5-rootfs.tar.gz .
+    cd ~/
+    sudo umount /mnt/rpi-rootfs
+    ```
