@@ -37,7 +37,13 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-## 3. After installation, verify that Docker is running:
+## 3. (Optional) Allow non-root user to manage Docker:
+```bash
+sudo usermod -aG docker $USER
+```
+Log out and Log in back.
+
+## 4. After installation, verify that Docker is running:
 ```bash
 sudo systemctl status docker
 ```
