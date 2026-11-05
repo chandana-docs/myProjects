@@ -11,6 +11,10 @@ sudo apt -o "Acquire::https::Verify-Peer=false" install <package_name>
 export GIT_SSL_NO_VERIFY=true
 ```
 
+### server certificate verification failed error wrt git clone as  below
+```log
+fatal: unable to access 'https://github.com/openbmc/openbmc.git/': server certificate verification failed. CAfile: none CRLfile: none
+```
 To skip SSL certificate verification when cloning a repository,
 ```bash
 git -c http.sslVerify=false clone <github_repo>
