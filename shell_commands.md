@@ -76,3 +76,25 @@ docker run -d \
 ```bash
 ip a
 ```
+
+### How to generate a single patch file form commitA to commitB using git format-patch
+git format-patch generates number of patch files instead of one file by default.
+1. Checkout a temporary branch at your end commit
+```bash
+git checkout -b temp-patch-branch <end-commit>
+```
+
+2. Reset the index back to your start commit (keeps files modified)
+```bash
+git reset --soft <start-commit>
+```
+
+3. Commit everything as a single combined commit
+```bash
+git commit -m "Combined changes from patch range"
+```
+
+4. Generate the single patch file
+```bash
+git format-patch -1 HEAD
+```
